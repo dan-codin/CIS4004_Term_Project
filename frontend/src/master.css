@@ -1,0 +1,17 @@
+#root{
+    margin: auto;
+}
+.map{
+    margin: auto;
+}
+#navbar{
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(50, 50, 52);
+    color:aliceblue;
+    font-size: 96px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    height: 20vh;
+
+}
