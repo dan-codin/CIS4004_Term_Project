@@ -1,27 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <Title> Reserve Ride </Title>
-    <h1> Reserve Ride</h1>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserve Ride</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <br>
-    <img src="Car moving.gif">
-    <br>
-    <h3> pick up location</h3>
-    <!-- add search bar here using css -->
-    <h3> drop off location</h3>
-    <!-- add search bar here using css -->
+    <h1>Reserve Ride</h1>
 
-    <button><p>Search</p></button>
+    <p class="subtitle">
+        Enter your pickup and drop off locations below
+    </p>
 
-        <!-- add free google maps API in javascript -->
-         <br>
-    <a href="index.html"><button><p>MainMenu</p></button> </a>
+    <img src="Car moving.gif" alt="Moving car" class="car-image">
+
+    <div class="form-container">
+        <input type="text" placeholder="Pickup Location" class="location-box">
+        <input type="text" placeholder="Drop Off Location" class="location-box">
+
+        <button class="search-btn">Search</button>
+    </div>
+
+    <div class="results-section">
+        <div class="rides-box">
+            <div class="rides-header">
+                <h2>Available Rides</h2>
+                <p>Sort <span>Time</span></p>
+            </div>
+
+            <div class="ride-card">
+                <span>Ron - Mar 12 9:00AM</span>
+                <button class="reserve-btn">Reserve</button>
+            </div>
+
+            <div class="ride-card">
+                <span>Ron - Mar 12 9:00AM</span>
+                <button class="reserve-btn">Reserve</button>
+            </div>
+
+            <div class="ride-card">
+                <span>Ron - Mar 12 9:00AM</span>
+                <button class="reserve-btn">Reserve</button>
+            </div>
+        </div>
+
+        <div class="map-box">
+            <img src="map-placeholder.jpg" alt="Map">
+        </div>
+    </div>
+
+    <a href="index.html" class="main-menu-btn">Main Menu</a>
 
 </body>
 </html>
