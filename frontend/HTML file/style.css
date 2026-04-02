@@ -40,3 +40,162 @@ img {
 .btn:hover {
     background-color: #36a646;
 }
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ececf1;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 48px;
+    font-weight: bold;
+    border-bottom: 3px solid #64d45c;
+    padding-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.car-image {
+    width: 150px;
+    margin-bottom: 30px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.location-box {
+    width: 350px;
+    padding: 18px;
+    font-size: 18px;
+    border: 2px solid #64d45c;
+    border-radius: 4px;
+    outline: none;
+    text-align: center;
+    background-color: white;
+}
+
+.search-btn {
+    background-color: #4fd157;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 35px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.search-btn:hover {
+    background-color: #3fbb47;
+}
+
+.results-section {
+    width: 85%;
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 0;
+    border: 2px solid #64d45c;
+    background-color: white;
+    min-height: 300px;
+}
+
+.rides-box {
+    width: 50%;
+    padding: 20px;
+    background-color: #f8f8f8;
+    text-align: left;
+}
+
+.rides-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.rides-header h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.rides-header p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.rides-header span {
+    color: #4fd157;
+}
+
+.ride-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #64d45c;
+    margin-bottom: 12px;
+    padding: 10px 14px;
+    background-color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.reserve-btn {
+    background-color: #4fd157;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.reserve-btn:hover {
+    background-color: #3fbb47;
+}
+
+.map-box {
+    width: 50%;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.map-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.main-menu-btn {
+    display: inline-block;
+    margin-bottom: 40px;
+    padding: 14px 28px;
+    background-color: #4fd157;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.main-menu-btn:hover {
+    background-color: #3fbb47;
+}
