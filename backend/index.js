@@ -81,6 +81,7 @@ app.get('/request', async (req, res)=>{
     try{
         const rides = db.collection('Rides');
         let result = await rides.find({RideDate: req.query.RideDate}).toArray();
+        console.log (result)
         res.json(result);
     }
     catch(err){

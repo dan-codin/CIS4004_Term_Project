@@ -86,6 +86,7 @@ function ReservePage() {
                     <input type='date' id='pickupDate' name='pickupDate' className='newForm'></input>
                 </form>
                 <button id='search' onClick={x => {const results = FindRoutes()}}>Find Rides</button>
+                <div id='ridesResult'></div>
             </div>
         </div>
     </>

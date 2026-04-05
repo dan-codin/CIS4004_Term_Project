@@ -43,11 +43,26 @@ export function FindRoutes(){
     .then((data)=>{
     // make result display area
     /************************************************************/
-    /**/let container = document.getElementById('container');/**/
+    /**/let container = document.getElementById('ridesResult');/**/
         let headerDiv = document.createElement('div');
         headerDiv.id= 'header';
         headerDiv.innerHTML= 'Available Rides';
-        const rideElements = data.map(ride => `<div>${ride.DriverFname}" - "${ride.date}" "${ride.lname}</div>`)
+        container.appendChild(headerDiv);
+        const rideElements = data.map(ride => {
+            const row = document.createElement('div');
+            row.className = 'resultRow';
+            const reserveBtn = document.createElement('button');
+            reserveBtn.id = ride._id;
+            reserveBtn.innerHTML="Reserve";
+            reserveBtn.className = 'reserveBtnClass';
+            const rowSpan = document.createElement('span');
+            rowSpan.className = "rowSpan";
+            rowSpan.innerHTML = `${ride.DriverFname + " "+ ride.RideDate + " " + ride.RideTime}`;
+            row.appendChild(rowSpan);
+            row.appendChild(reserveBtn);
+            container.append(row);
+            
+        })
     }
 )
 }
