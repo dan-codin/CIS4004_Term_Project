@@ -1,17 +1,161 @@
 #root{
-    margin: auto;
+    margin: 0;
+}
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-image:linear-gradient(to top,rgb(89, 89, 109), white 50%);
 }
 .map{
     margin: auto;
+    height: 100%;
 }
 #navbar{
     display: flex;
-    flex-direction: row;
-    background-color: rgb(50, 50, 52);
-    color:aliceblue;
-    font-size: 96px;
-    font-family: 'Courier New', Courier, monospace;
+    flex-direction: column;
+    background-image:linear-gradient(to bottom,rgb(89, 89, 109) 10%, white);
+    color:white;
+    font-family:'Orbitron', sans-serif;
+    font-size: xx-large;
     text-align: center;
-    height: 20vh;
+    justify-content: center;
+    padding: auto;
+    height: 40vh;
+    border-bottom: 4px solid rgb(89, 89, 109);
 
+
+}
+#rideForm{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    justify-content: center;
+}
+.searchbox{
+    width: 20vw;
+    margin: 10px;
+}
+
+.mapboxgl-map{
+    margin: auto;
+}
+#car{
+    margin: auto;
+}
+span{
+    font-family:'Orbitron', sans-serif;
+    color: rgb(10, 238, 55);
+    font-size: x-large;
+    margin-bottom: 0;
+    border: none;
+}
+label{
+     font-family:'Orbitron', sans-serif;
+    font-size: x-large;
+    display: block;
+}
+#formContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 45vw;
+    justify-content: center;
+    margin: auto;
+   
+
+}
+.newForm{
+    border: 1px rgb(181, 181, 181) solid;
+    border-radius: 5px;
+    width: 20vw;
+    height: 3.5vh;
+    margin: 10px;
+}
+#navbarRide{
+    display: flex;
+    flex-direction: column;
+    background-image:linear-gradient(to bottom,rgb(89, 89, 109) 95%, white);
+    color:white;
+    font-family:'Orbitron', sans-serif;
+    font-size: xx-large;
+    text-align: center;
+    justify-content: center;
+    padding: auto;
+    height: 10vh;
+    border-bottom: 4px solid rgb(89, 89, 109);
+
+
+}
+label{
+    margin: 10px;
+}
+#signup a{
+    color:black;
+}
+#navbar img{
+    margin: auto;
+    object-fit:contain;
+}
+#user{
+    position: absolute;
+    top:20px;
+    right:30px
+}
+
+#container{
+    text-align: center;
+    height: auto;
+}
+.error{
+    font-family:'Orbitron', sans-serif;
+    font-size: x-large;
+    color: red;
+}
+.success{
+    font-family:'Orbitron', sans-serif;
+    font-size: x-large;
+    color:rgb(10, 238, 55);;
+}
+
+button{
+    background-color:rgb(89, 89, 109) ;
+    color: white;
+    width: 15vw;
+    height: 10vh;
+    font-family:'Orbitron', sans-serif;
+    font-size: x-large;
+    margin: 30px;
+    border: 1px rgb(181, 181, 181) solid;
+    border-radius: 5px;
+
+}
+button:hover{
+    transition: transform 0.3s ease-in-out;
+    transform:scale(1.1);
+    color: rgb(10, 238, 55);
+    border: 1px rgb(10, 238, 55) solid;
+    
+}
+button:hover > *{
+    transition: transform 0.3s ease-in-out;
+    color: rgb(10, 238, 55);
+    
+}
+a{
+    text-decoration: none;
+    color: white;
+    object-fit: contain;
+}
+#icon{
+    width: 5vw;
+    height: 8vh;
+    margin: 0;
+}
+
+#search{
+    width: 15vw;
+    height: 10vh;
+    font-size: medium;
+    
 }

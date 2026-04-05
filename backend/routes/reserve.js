@@ -1,6 +1,5 @@
 //create route to reserve a ride
 const router = require("express").Router()
-
 const Ride = require("../models/Reserve");
 
 //create new request
