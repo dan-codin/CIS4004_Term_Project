@@ -41,6 +41,9 @@ export function FindRoutes(){
     })
     .then(response => response.json())
     .then((data)=>{
+        //store data in session storage to set pins on map
+        sessionStorage.removeItem('availablerides')
+        sessionStorage.setItem('availablerides', JSON.stringify(data))
     // make result display area
     /************************************************************/
     /**/let container = document.getElementById('ridesResult');/**/
@@ -61,6 +64,18 @@ export function FindRoutes(){
             row.appendChild(rowSpan);
             row.appendChild(reserveBtn);
             container.append(row);
+            container.addEventListener('click', (event) => {
+                const btn = event.target.closest('button');
+                if (!btn) return;
+
+                // prevent double firing
+                if (btn.dataset.clicked === "true") return;
+
+                btn.dataset.clicked = "true";
+                btn.disabled = true;
+
+                SaveReservation(btn.id);
+                });
             
         })
     }
@@ -92,7 +107,9 @@ export function FindRoutes(){
             const profile = {
                 firstName: data.User.Firstname,
                 lastName: data.User.Lastname,
-                id: data.User._id
+                id: data.User._id,
+                admin: data.User.Admin,
+                username: data.User.Username
             }
             sessionStorage.setItem('user', JSON.stringify(profile));
             window.location.href = data.redirectUrl;
@@ -107,8 +124,9 @@ export function FindRoutes(){
     const lname = document.getElementById('lname').value;
     const user = document.getElementById('username').value;
     const pw= document.getElementById('password').value;
+    const admin = document.getElementById('admin').checked;
 
-    let info = {Firstname: fname, Lastname: lname, Username: user, Password:pw}
+    let info = {Firstname: fname, Lastname: lname, Username: user, Password:pw, Admin: admin}
     fetch("http://localhost:5000/register",{
         method: 'POST',
         headers:
@@ -353,4 +371,201 @@ export function SaveCar(){
 .catch(err => console.log(err));
 }
 
-//retrieve currentUSer
+//get all reservations -admin
+ export function GetAllReservations(){
+    const resultcontainer = document.getElementById('adminResults');
+     fetch(`http://localhost:5000/reservations`,{
+         method: 'GET',
+         headers:
+         {'Accept':'application/json', 'Content-Type':'application/json'},
+         credentials: 'include',
+        }).then(response =>response.json())
+        .then(data =>{
+            if(data){
+                    data.forEach(v=>{
+                    let div = document.createElement('div');
+                    let name = document.createElement('label')
+                    name.innerHTML = "Name:"
+                    let passenger = document.createElement('span')
+                    passenger.innerHTML=v.PassengerFname + " " + v.PassengerLname;
+                    let driver = document.createElement('label')
+                    driver.innerHTML = "driver:"
+                    let drivername = document.createElement('span')
+                    drivername.innerHTML=v.DriverFname + " " + v.DriverLname;
+                    let date = document.createElement('label')
+                    date.innerHTML = "Date and Time:"
+                    let dateandtime = document.createElement('span')
+                    dateandtime.innerHTML=v.RideDate + " " + v.RideTime;
+                    let car = document.createElement('label')
+                    name.innerHTML = "Vehicle:"
+                    let vehicle = document.createElement('span')
+                    vehicle.innerHTML=v.Vehicle
+                    div.appendChild(name)
+                    div.appendChild(passenger)
+                    div.appendChild(driver)
+                    div.appendChild(drivername)
+                    div.appendChild(date)
+                    div.appendChild(dateandtime)
+                    div.appendChild(car)
+                    div.appendChild(vehicle)
+                    resultcontainer.appendChild(div)
+
+            })
+    }
+    if(data.message){
+        let container = document.getElementById('container');
+        let div = document.createElement('div')
+        div.innerHTML = data.message;
+        div.classList.add('error');
+        container.prepend(div)
+    }
+})
+.catch(err => console.log(err));
+}
+
+//Get all users
+export function GetUsers(){
+     fetch(`http://localhost:5000/users}`,{
+         method: 'GET',
+         headers:
+         {'Accept':'application/json', 'Content-Type':'application/json'},
+         credentials: 'include',
+        }).then(response =>response.json())
+        .then(data =>{
+            if(data){
+               
+           data.forEach(v=>{
+            let optionElement = document.createElement('option');
+        })
+    }
+    if(data.message){
+        let container = document.getElementById('container');
+        let div = document.createElement('div')
+        div.innerHTML = data.message;
+        div.classList.add('error');
+        container.prepend(div)
+    }
+})
+.catch(err => console.log(err));
+}
+
+//Save reservation
+export function SaveReservation(route_id){
+    const user= JSON.parse(sessionStorage.getItem('user'))
+    const routes= JSON.parse(sessionStorage.getItem('availablerides'));
+    const s = routes.find(r => r._id === route_id )
+    const reservationInfo = {RouteID: s.id, PassengerFname: user.firstName, PassengerLname: user.lastName, 
+        PassengerID: user.id, DriverFname:s.DriverFname, DriverLname:s.DriverLname, PickUpLat:s.PickUpLat, PickUpLng:s.PickUpLng,
+        DropOffLat: s.DropOffLat, DropOffLng:s.DropOffLng, RideDate: s.RideDate, RideTime:s.RideTime, Vehicle: s.Vehicle
+     }
+     console.log(reservationInfo)
+    fetch('http://localhost:5000/reserveride',{
+        method: 'POST',
+        headers:
+        {'Accept':'application/json', 'Content-Type':'application/json'},
+        credentials: 'include',
+        body: JSON.stringify(reservationInfo)
+    }).then(response =>response.json())
+    .then(data =>{
+        if(data.success){
+            let container = document.getElementById('container');
+            let div = document.createElement('div')
+             div.innerHTML = data.success
+             div.classList.add('success');
+            container.prepend(div)
+        }
+    })
+    .catch(err => console.log(err));
+
+ }
+ export function LogOut(){
+    sessionStorage.clear()
+    window.location.href = '/'
+ }
+
+ //Edit Vehicle
+ export function EditVehicle(){
+  const parent = document.getElementById('adminResults');
+  
+    //retrieve vehicles
+    const userID = JSON.parse(sessionStorage.getItem('user')).id;
+     const param = new URLSearchParams({UserID: userID}).toString();
+     fetch(`http://localhost:5000/vehicle/list?${param}`,{
+         method: 'GET',
+         headers:
+         {'Accept':'application/json', 'Content-Type':'application/json'},
+         credentials: 'include',
+        }).then(response =>response.json())
+        .then(data =>{
+                if(data.success){
+                    const vehArr = data.Vehicles;
+                    const options = vehArr.forEach(v => {
+                    const container = document.createElement('div')
+                    container.className ='editVehicle'
+                    const make = document.createElement('input');
+                    make.id = 'make'+v._id;
+                    make.className = 'newForm';
+                    make.value = v.Make;
+                    const model = document.createElement('input');
+                    model.id = 'model'+v._id;
+                    model.className='newForm';
+                    model.value = v.Model;
+                    const color = document.createElement('input');
+                    color.id = 'color'+v._id
+                    color.className = 'newForm';
+                    color.value = v.Color;
+                    const year = document.createElement('input');
+                    year.type = 'number';
+                    year.min=2016;
+                    year.id = 'year'+v._id
+                    year.className='newForm'
+                    year.value = v.Year
+                    const seats = document.createElement('input')
+                    seats.type = 'number'
+                    seats.min=2
+                    seats.className='newForm'
+                    seats.value = v.Seats
+                    seats.id='seats'+v._id
+                    const save = document.createElement('button')
+                    save.id = v._id
+                    save.textContent = 'save'
+
+                    container.appendChild(make)
+                    container.appendChild(model)
+                    container.appendChild(color)
+                    container.appendChild(year)
+                    container.appendChild(seats)
+                    container.appendChild(save)
+                    parent.appendChild(container)
+                    let info = {Make: make, Model: model, Color: color, Year: year, Seats: seats, UserID: userID}
+                }
+            )
+            }
+        
+            
+ })}
+export function UpdateCar(){
+    
+
+ }
+ export function Change(){
+    const pw = document.getElementById('myuserpw').value
+    let info = { Userpw: pw, Username: JSON.parse(sessionStorage.getItem('user')).username}
+    fetch('http://localhost:5000/change',{
+        method: 'PUT',
+        headers:
+        {'Accept':'application/json', 'Content-Type':'application/json'},
+        credentials: 'include',
+        body: JSON.stringify(info)
+    }).then(response =>response.json())
+    .then(data =>{
+        if(data.success){
+            let container = document.getElementById('container');
+            let div = document.createElement('div')
+             div.innerHTML = data.success
+             div.classList.add('success');
+            container.prepend(div)
+        }
+    })
+    .catch(err => console.log(err));
+}

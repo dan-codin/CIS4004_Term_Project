@@ -13,7 +13,8 @@ function LoginPage(){
                 <div>
                     <h1>Car Pool App</h1>
                 </div>
-                <img src="./images/car.png"></img>
+                
+                <img src="./images/Car moving.gif"></img>
             </nav>
             <div id="container">
                  <div id='formContainer'>
@@ -27,7 +28,7 @@ function LoginPage(){
                         <input type="password" id='password' name='password' className='newForm'></input>   
                     </div>
                 </div>
-                <button onClick={x=>Login()}>Login</button>
+                <button className="custombtn" onClick={x=>Login()}>Login</button>
             <span id='signup'><Link to='/signup'>Signup?</Link></span>
             </div>
         </div>

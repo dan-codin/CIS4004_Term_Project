@@ -27,9 +27,11 @@ function SignUpPage(){
                         <input id='lname' className='newForm'></input>
                         <label>Password</label>
                         <input type="password" id='password' name='password' className='newForm'></input>   
+                        <label>Admin</label>
+                        <input type='checkbox' id='admin'></input>
                     </div>
                 </div>
-                <button onClick={x=>SignUp()}>Submit</button>
+                <button className="custombtn"onClick={x=>SignUp()}>Submit</button>
             </div>
         </div>
     </>

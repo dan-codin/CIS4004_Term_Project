@@ -7,6 +7,7 @@ import SignupPage from './Signup'
 import DriverPage from './Driver'
 import CarPage from './Vehicle'
 import VehiclePage from './Vehicle'
+import AdminPage from './Admin'
 
 export const AppRoutes = () => {
     return(
@@ -19,6 +20,7 @@ export const AppRoutes = () => {
                 <Route path='/signup' element={<SignupPage/>} />
                 <Route path='/driver' element={<DriverPage/>} />
                  <Route path='/vehicle' element={<VehiclePage/>} />
+                 <Route path='/admin' element={<AdminPage/>} />
             </Routes>
         </Router>
     )

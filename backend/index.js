@@ -1,7 +1,6 @@
 require('dotenv').config()
 const cors = require('cors');
 const express = require("express");
-const mongoose =require ("mongoose");
 const app = express();
 const {MongoClient, ObjectId} = require('mongodb');
 
@@ -15,18 +14,11 @@ app.use(express.json());
 //allow parse
 app.use(express.urlencoded({extended:true}))
 
-//connect to mongodb
-mongoose.connect(process.env.MONGO_URL).then(()=>{
-    console.log("database is connected")
-}).catch((error)=>
-    console.log(error)
-)
-//routes
 //Register
 app.post("/register", async (req, res) => {
     try{
 
-        const { Firstname, Lastname, Username, Password } = req.body;
+        const { Firstname, Lastname, Username, Password, Admin} = req.body;
         const users = db.collection('Users');
         let existingUser = await users.findOne({ Username:Username });
 
@@ -35,9 +27,9 @@ app.post("/register", async (req, res) => {
             return res.json({ message: "Username already exists"});
         }
         else{
-            let newUser = await users.insertOne({Firstname, Lastname, Username, Password });
+            let newUser = await users.insertOne({Firstname, Lastname, Username, Password, Admin });
     
-            return res.json({success: "User proile created", User: newUser, redirectUrl:'/'});
+            return res.json({success: "User profile created", User: newUser, redirectUrl:'/'});
 
         }
     }
@@ -64,6 +56,31 @@ app.post('/login', async (req, res) => {
         console.log(err);
     }
 });
+//update admin password
+app.put('/change', async (req, res) => {
+    try {
+        const { Username, Userpw } = req.body;
+
+        const users = db.collection('Users');
+
+        const user = await users.findOne({ Username});
+        console.log(Username)
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        await users.updateOne(
+            { Username }, 
+            { $set: { Password: Userpw } }
+        );
+
+        res.json({ success: "Password changed" });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
 
 app.post('/offer', async (req, res)=>{
     try{
@@ -81,7 +98,6 @@ app.get('/request', async (req, res)=>{
     try{
         const rides = db.collection('Rides');
         let result = await rides.find({RideDate: req.query.RideDate}).toArray();
-        console.log (result)
         res.json(result);
     }
     catch(err){
@@ -156,20 +172,6 @@ port = process.env.PORT
 app.listen(port, ()=>{
     console.log("node server is running on "+ port)
 });
-
-//connect mongoDB locally
-async function connectDB(uri) {
-    uri = process.env.MONGO_URI;
-    const client = new MongoClient(uri);
-    try{
-        await client.connect();
-        db = client.db('carpool');
-    }
-    catch (err){
-        console.log(err);
-        return null;
-    }   
-}
  //add car
  app.post('/vehicle', async (req, res) => {
     try{
@@ -195,6 +197,56 @@ app.get('/vehicle/list', async (req, res) => {
         }
         else{
             return res.json({message: "you need to add a vehicle to offer rides"})
+        }
+    }
+    catch(err){
+        console.log(err);
+    }
+});
+
+//connect mongoDB locally
+async function connectDB(uri) {
+    uri = process.env.MONGO_URI
+    const client = new MongoClient(uri);
+    try{
+        await client.connect();
+        db = client.db('carpool');
+        console.log('database connected')
+    }
+    catch (err){
+        console.log(err);
+        return null;
+    }   
+}
+
+//get all reservations
+app.get('/reservations', async (req, res) => {
+    try{    
+        const reservations = db.collection('Reservations');
+        let reservationsResult = await reservations.find({}).toArray();
+        if (!reservationsResult){
+                return res.status(400).json({ message: "No reservation exists at this time"})
+        }
+        else{
+            console.log(reservationsResult)
+            res.json({reservationsResult})
+        }
+    }
+    catch(err){
+        console.log(err);
+    }
+});
+
+//reserve ride
+app.post('/reserveride', async (req, res) => {
+    try{
+        const reservations = db.collection('Reservations');
+        if (reservations){
+                await reservations.insertOne(req.body);
+                res.json({success:" your ride was reserved"})
+        }
+        else{
+
         }
     }
     catch(err){

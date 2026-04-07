@@ -9,7 +9,15 @@ body{
 }
 .map{
     margin: auto;
-    height: 100%;
+    height: fit-content;
+}
+.map-home{
+    margin: auto;
+    height: 100vh;
+}
+.container{
+    margin: auto;
+    height: 100vh;
 }
 #navbar{
     display: flex;
@@ -25,6 +33,35 @@ body{
     border-bottom: 4px solid rgb(89, 89, 109);
 
 
+}
+#adminResults{
+    padding: 10px;
+}
+#myuserpw{
+    margin: auto;
+}
+.editVehicle{
+    border: 2px solid  rgb(89, 89, 109); 
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: .5vh;
+}
+#home{
+    width:4vw;
+    height: 7vh;
+    position: relative;
+    top:-60px;
+    left: 10px;
+    margin: 0;
+}
+#url{
+    position: absolute;
+    left: 10px;
+    top:70px;
+    margin: 0;
 }
 #rideForm{
     display: flex;
@@ -42,6 +79,7 @@ body{
 }
 #car{
     margin: auto;
+  
 }
 span{
     font-family:'Orbitron', sans-serif;
@@ -68,11 +106,16 @@ label{
     border: 2px solid rgb(2, 97, 21) ;
     margin: auto;
 }
+#admin{
+    width:4vw;
+    height: 4vh;
+    margin: auto;
+}
 .resultRow{
     background-color: white;
     height: fit-content;
     padding: 0px;
-    margin: auto;
+    margin:20px;
     width: 86%;
     border: 2px solid rgb(2, 97, 21) ;
 
@@ -139,7 +182,9 @@ label{
 
 #container{
     text-align: center;
-    height: auto;
+    height: 100vh;
+    max-width: 800px;
+    margin: auto;
 }
 .error{
     font-family:'Orbitron', sans-serif;
@@ -151,27 +196,33 @@ label{
     font-size: x-large;
     color:rgb(10, 238, 55);;
 }
+#adminBtns{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    justify-content: center;
+}
 
-button{
+.custombtn{
     background-color:rgb(89, 89, 109) ;
     color: white;
     width: 15vw;
     height: 10vh;
     font-family:'Orbitron', sans-serif;
-    font-size: x-large;
+    font-size: cal(4vw + 4vh);
     margin: 30px;
     border: 1px rgb(181, 181, 181) solid;
     border-radius: 5px;
 
 }
-button:hover{
+.custombtn:hover{
     transition: transform 0.3s ease-in-out;
     transform:scale(1.1);
     color: rgb(10, 238, 55);
     border: 1px rgb(10, 238, 55) solid;
     
 }
-button:hover > *{
+.custombtn:hover > *{
     transition: transform 0.3s ease-in-out;
     color: rgb(10, 238, 55);
     

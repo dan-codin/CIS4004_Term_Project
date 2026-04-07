@@ -3,7 +3,7 @@ import Map, {Marker} from 'react-map-gl/mapbox';
 import { SearchBox } from '@mapbox/search-js-react';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '../src/master.css';
-import {NewOffer, ListVehicles} from './Helper'
+import {NewOffer, ListVehicles, LogOut} from './Helper'
 
 
 function OfferPage() {
@@ -20,15 +20,18 @@ function OfferPage() {
         <div className="map">
             <nav id="navbarRide">
                 <div>
-                     <span id='user'>{JSON.parse(sessionStorage.getItem('user')).firstName}</span>
+                     <span id='user'>{JSON.parse(sessionStorage.getItem('user')).firstName} <button id='logout'onClick={x=>LogOut()}>Log Out</button></span>
                     <h3>Car Pool App : <span> Offer Ride</span></h3>
                 </div>
+                 <a id='url' href='/home'>
+                    <img id='home' src='./images/home.PNG'></img>
+                </a>
             </nav>
             
             <Map
             {...viewState}
             onMove={evt => setViewState(evt.viewState)}
-            style={{width: 800, height: 300}}
+            style={{width: '100vw', height:"40vh"}}
             mapStyle="mapbox://styles/mapbox/streets-v9"
             mapboxAccessToken = {TOKEN}
             >
@@ -88,7 +91,7 @@ function OfferPage() {
                             <select className='newForm' id='vehicle'></select>
                         </div>
                 </div>
-                <button id='search' onClick={x=>NewOffer()}>Save Route</button>
+                <button className="custombtn" id='search' onClick={x=>NewOffer()}>Save Route</button>
             </div>
         </div>
     </>
