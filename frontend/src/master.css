@@ -1,17 +1,246 @@
 #root{
-    margin: auto;
+    margin: 0;
+}
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-image:linear-gradient(to top,rgb(89, 89, 109), white 50%);
 }
 .map{
     margin: auto;
+    height: fit-content;
+}
+.map-home{
+    margin: auto;
+    height: 100vh;
+}
+.container{
+    margin: auto;
+    height: 100vh;
 }
 #navbar{
     display: flex;
-    flex-direction: row;
-    background-color: rgb(50, 50, 52);
-    color:aliceblue;
-    font-size: 96px;
-    font-family: 'Courier New', Courier, monospace;
+    flex-direction: column;
+    background-image:linear-gradient(to bottom,rgb(89, 89, 109) 10%, white);
+    color:white;
+    font-family:'Orbitron', sans-serif;
+    font-size: xx-large;
     text-align: center;
-    height: 20vh;
+    justify-content: center;
+    padding: auto;
+    height: 40vh;
+    border-bottom: 4px solid rgb(89, 89, 109);
 
+
+}
+#adminResults{
+    padding: 10px;
+}
+#myuserpw{
+    margin: auto;
+}
+.editVehicle{
+    border: 2px solid  rgb(89, 89, 109); 
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: .5vh;
+}
+#home{
+    width:4vw;
+    height: 7vh;
+    position: relative;
+    top:-60px;
+    left: 10px;
+    margin: 0;
+}
+#url{
+    position: absolute;
+    left: 10px;
+    top:70px;
+    margin: 0;
+}
+#rideForm{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    justify-content: center;
+}
+.searchbox{
+    width: 20vw;
+    margin: 10px;
+}
+
+.mapboxgl-map{
+    margin: auto;
+}
+#car{
+    margin: auto;
+  
+}
+span{
+    font-family:'Orbitron', sans-serif;
+    color: rgb(10, 238, 55);
+    font-size: x-large;
+    margin-bottom: 0;
+    border: none;
+}
+label{
+    font-family:'Orbitron', sans-serif;
+    font-size: x-large;
+    display: block;
+}
+#formContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 45vw;
+    justify-content: center;
+    margin: auto;
+}
+#ridesResult{
+    width: 60%;
+    border: 2px solid rgb(2, 97, 21) ;
+    margin: auto;
+}
+#admin{
+    width:4vw;
+    height: 4vh;
+    margin: auto;
+}
+.resultRow{
+    background-color: white;
+    height: fit-content;
+    padding: 0px;
+    margin:20px;
+    width: 86%;
+    border: 2px solid rgb(2, 97, 21) ;
+
+}
+.rowSpan{
+    margin:5px;
+    padding: 0;
+    font-size: medium;
+    color: black;
+}
+.reserveBtnClass{
+    background-color:rgb(2, 97, 21) ;
+    font-family:'Orbitron', sans-serif;
+    font-size: medium;
+    color: white;
+    width: 102px;
+    height: 40px;
+    margin:0;
+    
+}
+#header{
+    background-color: gray;
+    font-family:'Orbitron', sans-serif;
+    font-size: x-large;
+    width: 100%;
+}
+.newForm{
+    border: 1px rgb(181, 181, 181) solid;
+    border-radius: 5px;
+    width: 20vw;
+    height: 3.5vh;
+    margin: 10px;
+}
+#navbarRide{
+    display: flex;
+    flex-direction: column;
+    background-image:linear-gradient(to bottom,rgb(89, 89, 109) 95%, white);
+    color:white;
+    font-family:'Orbitron', sans-serif;
+    font-size: xx-large;
+    text-align: center;
+    justify-content: center;
+    padding: auto;
+    height: 10vh;
+    border-bottom: 4px solid rgb(89, 89, 109);
+
+
+}
+label{
+    margin: 10px;
+}
+#signup a{
+    color:black;
+}
+#navbar img{
+    margin: auto;
+    object-fit:contain;
+}
+#user{
+    position: absolute;
+    top:20px;
+    right:30px
+}
+
+#container{
+    text-align: center;
+    height: 100vh;
+    max-width: 800px;
+    margin: auto;
+}
+.error{
+    font-family:'Orbitron', sans-serif;
+    font-size: x-large;
+    color: red;
+}
+.success{
+    font-family:'Orbitron', sans-serif;
+    font-size: x-large;
+    color:rgb(10, 238, 55);;
+}
+#adminBtns{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    justify-content: center;
+}
+
+.custombtn{
+    background-color:rgb(89, 89, 109) ;
+    color: white;
+    width: 15vw;
+    height: 10vh;
+    font-family:'Orbitron', sans-serif;
+    font-size: cal(4vw + 4vh);
+    margin: 30px;
+    border: 1px rgb(181, 181, 181) solid;
+    border-radius: 5px;
+
+}
+.custombtn:hover{
+    transition: transform 0.3s ease-in-out;
+    transform:scale(1.1);
+    color: rgb(10, 238, 55);
+    border: 1px rgb(10, 238, 55) solid;
+    
+}
+.custombtn:hover > *{
+    transition: transform 0.3s ease-in-out;
+    color: rgb(10, 238, 55);
+    
+}
+a{
+    text-decoration: none;
+    color: white;
+    object-fit: contain;
+}
+#icon{
+    width: 5vw;
+    height: 8vh;
+    margin: 0;
+}
+
+#search{
+    width: 15vw;
+    height: 10vh;
+    font-size: medium;
+    
 }
